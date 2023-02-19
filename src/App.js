@@ -1,19 +1,27 @@
 import './App.css';
-import {useEffect, useState} from "react";
-import {filmService} from "./services/filmService";
+import {Navigate, Route, Routes} from "react-router-dom";
+
+import {AboutPage, MovieDetailsPage, MoviePage, NotFoundPage} from "./pages";
+import {MainLayout} from "./layouts";
 
 function App() {
-    const [data,setData] = useState(null);
 
-    useEffect(()=>{
-        filmService.discoverMovie(1).then(({data})=>setData(data))
-        console.log(data);
-    },[])
-  return (
-    <div className="App">
-      App
-    </div>
-  );
+    return (
+        <div className="App">
+
+            <Routes>
+                <Route path={'/'} element={<MainLayout/>}>
+                    <Route index element={ <Navigate to={'movies'}/> } />
+                    <Route path={'movies'} element={ <MoviePage/> } />
+                    <Route path={'details'} element={<MovieDetailsPage/>}/>
+                    <Route path={'about'} element={ <AboutPage/> } />
+                </Route>
+
+                <Route path={'*'} element={ <NotFoundPage/> } />
+
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
