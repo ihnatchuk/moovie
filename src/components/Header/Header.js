@@ -3,11 +3,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {FormControl, MenuItem, Select} from "@mui/material";
 
 import css from './Header.module.css'
-import {setLangId, setPage, setSearchString} from "../../redux";
+import {setFilterByGenre, setLangId, setPage, setSearchString} from "../../redux";
 
 const Header = () => {
     const search = useRef();
-    const {langId, searchString, isSearching, page} = useSelector(state => state.movies)
+    const {langId} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
 
@@ -18,16 +18,14 @@ const Header = () => {
         if (!!search.current.value) {
             dispatch(setSearchString(search.current.value))
             dispatch(setPage(1))
+            dispatch(setFilterByGenre(''))
         } else {
             dispatch(setSearchString(''))
             dispatch(setPage(1))
+            dispatch(setFilterByGenre(''))
         }
     }
 
-    console.log('search.current.value', search);
-    console.log('searchString', searchString);
-    console.log('isSearching', isSearching);
-    console.log('page', page);
     return (
         <>
             <div className={css.HeaderLayout}>

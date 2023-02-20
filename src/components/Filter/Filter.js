@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
-import {movieAction, setFilterByGenre} from "../../redux";
+import {movieAction, setFilterByGenre, setPage, setSearchString} from "../../redux";
 import css from './Filter.module.css'
 
 
@@ -11,6 +11,10 @@ const Filter = () => {
 
     const click=(genreId)=>{
         dispatch(setFilterByGenre(genreId))
+        dispatch(setPage(1))
+        dispatch(setSearchString(''))
+
+
     }
 
     useEffect(() => {
