@@ -5,26 +5,46 @@ import {MoviesListCard} from "../MoviesListCard/MoviesListCard";
 import {movieAction} from "../../redux";
 import css from './MoviesList.module.css'
 import {lang} from "../../configs";
+import {useSearchParams} from "react-router-dom";
 
 
 const MoviesList = () => {
 
-    const {page, movies, langId, filterByGenre, searchString, isSearching} = useSelector(state => state.movies);
+    const moviesState = useSelector(state => state.movies);
+    const {page, movies, langId, filterByGenre, searchString, isSearching}=moviesState
+
     const dispatch = useDispatch();
 
+    const [query, setQuery]=useSearchParams(
+        {lang:langId,genres:filterByGenre,search:searchString,page })
+
     useEffect(() => {
-        if (isSearching) {
-            dispatch(movieAction.searchMovies({searchString, page, langId}))
+        if (!!isSearching) {
+            dispatch(movieAction.searchMovies(
+                {searchString:query.get('search'), page:query.get('page'), langId:query.get('lang')}))
         }
-    }, [dispatch, page, langId, searchString])
+    }, [dispatch, query])
 
     useEffect(() => {
         if (!isSearching) {
-            dispatch(movieAction.discoverMovies({page, langId, filterByGenre}))
-        }
-    }, [dispatch, page, langId, filterByGenre,searchString])
 
-//
+            dispatch(movieAction.discoverMovies(
+                {page:query.get('page'), langId:query.get('lang'), filterByGenre:query.get('genres')}))
+
+        }
+    }, [dispatch, query])
+
+    useEffect(() => {
+            setQuery(
+                {
+                    lang:langId,
+                    genres:filterByGenre,
+                    search:searchString,
+                    page}
+            )
+    }, [dispatch, page, langId, filterByGenre, searchString])
+
+
     return (
         <div>
             <div className={css.MoviesList}>

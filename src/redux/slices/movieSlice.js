@@ -4,7 +4,7 @@ import {movieService} from "../../services";
 let initialState = {
     movies: [],
     genres: [],
-    filterByGenre:null,
+    filterByGenre:'',
     searchString:'',
     isSearching:false,
     langId:1,

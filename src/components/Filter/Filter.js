@@ -18,14 +18,17 @@ const Filter = () => {
     }, [dispatch,langId])
 
     return (
-        <div className={css.Filter}>
+        <>
+            <div className={css.Filter}>
             <ul className={css.genres}>
                 {
                     genres.map(genre =><button onClick={()=>click(genre.id)}><li key={genre.id}>  {genre.name}</li></button> )
                 }
             </ul>
-            {/*<div className={css.fakeBox}></div>*/}
         </div>
+            <div className={css.fakeBox}></div>
+        </>
+
     );
 };
 

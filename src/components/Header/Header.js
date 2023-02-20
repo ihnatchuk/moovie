@@ -10,6 +10,7 @@ const Header = () => {
     const {langId, searchString, isSearching, page} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
+
     const handleChange = (event, value) => {
         dispatch(setLangId(value.props.value))
     };
@@ -37,7 +38,7 @@ const Header = () => {
                         <button type={'submit'} onClick={() => click()}>Search</button>
                     </div>
                     <div>
-                        <FormControl sx={{m: 0, minWidth: 40}} size="small">
+                        <FormControl sx={{m: 1, minWidth: 40}} size="small">
                             <Select
                                 value={langId}
                                 onChange={handleChange}
