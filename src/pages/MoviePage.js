@@ -13,7 +13,6 @@ const MoviePage = () => {
 
     return (
         <div>
-            {/*<Typography>Page: {page}/{total_pages}</Typography>*/}
             <div className={css.pagAlign}>
                 <Pagination count={+total_pages} color="primary" page={+page} onChange={handleChange}/>
             </div>

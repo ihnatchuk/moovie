@@ -3,12 +3,13 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    width: 85%;
+    width: 100%;
     font-size: 1.2em;
     justify-content: center;
-    padding: 0;
+    padding: 20px;
     column-gap: 15px;
     row-gap: 20px;
+    background-color: rgba(255, 255, 0, 0.8);
 
     /*position: fixed;*/
     /*top:75px;*/
@@ -19,8 +20,10 @@
 .genres li{
     box-sizing: border-box;
     align-items: center;
-    padding: 5px 15px;
-    background-color: rgba(14, 82, 150, 0.58);
-    color: rgb(255, 255, 17);
-    border-radius: 15px;
+    padding: 5px 5px;
+    color: darkblue;
+    font-weight: bold;
+    /*background-color: rgba(14, 82, 150, 0.58);*/
+    /*color: rgb(255, 255, 17);*/
+    /*border-radius: 15px;*/
 }

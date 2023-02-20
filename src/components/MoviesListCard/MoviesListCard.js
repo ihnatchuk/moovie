@@ -10,14 +10,14 @@ const MoviesListCard = ({movie}) => {
 
     const {genres} = useSelector(state => state.movies)
 
-    const year = release_date.split('-')[0]
+    const year = release_date?release_date.split('-')[0]:'no data'
 
     return (
         <div className={css.MovieCard}>
             <PosterPreview path={poster_path}/>
             <div className={css.info}>{title}</div>
 
-            {genre_ids.length &&
+            {!!genre_ids.length &&
                 <div className={css.genre}>
                     {genreNameById(genre_ids[0], genres)}
                 </div>

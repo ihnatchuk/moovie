@@ -4,8 +4,11 @@ import {movieService} from "../../services";
 let initialState = {
     movies: [],
     genres: [],
+    filterByGenre:null,
+    searchString:'',
+    isSearching:false,
     langId:1,
-    page:null,
+    page:1,
     total_pages:null,
     errors: null
 };
@@ -13,9 +16,9 @@ let initialState = {
 
 const discoverMovies = createAsyncThunk(
     'movieSlice/discoverMovies',
-    async ({page,langId}, thunkAPI) => {
+    async ({page,langId,filterByGenre}, thunkAPI) => {
         try {
-            const {data} = await movieService.discoverMovie(page,langId)
+            const {data} = await movieService.discoverMovie(page,langId,filterByGenre)
             return data
         }catch (e) {
             thunkAPI.rejectWithValue(e.response.data)
@@ -54,14 +57,24 @@ const movieSlice = createSlice({
         setPage:(state, action)=>{
             state.page=action.payload
         },
+
         setLangId:(state, action)=>{
             state.langId=action.payload
         },
-        getGenreById:(state,action)=>{
-            const genreName=state.genres.find(genre=>genre.id===action.payload).name
-            console.log(genreName);
-            return genreName
-        }
+
+        setSearchString:(state, action)=>{
+            if (!!action.payload){
+                state.searchString=action.payload
+                state.isSearching=true
+            }else{
+                state.searchString=action.payload
+                state.isSearching=false
+            }
+        },
+
+        setFilterByGenre:(state,action)=>{
+            state.filterByGenre=action.payload
+            }
 
     },
     extraReducers: builder =>
@@ -86,7 +99,7 @@ const movieSlice = createSlice({
 
 });
 
-const {reducer: movieReducer, actions:{setPage,setLangId,getGenreById}} = movieSlice
+const {reducer: movieReducer, actions:{setPage,setLangId,setSearchString,setFilterByGenre}} = movieSlice
 
 const movieAction = {
     discoverMovies,
@@ -99,5 +112,6 @@ export {
     movieAction,
     setPage,
     setLangId,
-    getGenreById
+    setSearchString,
+    setFilterByGenre
 }
