@@ -1,7 +1,14 @@
 import React from 'react';
+import {useSelector} from "react-redux";
 
-const MovieInfo = ({movie}) => {
-    const {id, title, vote_average, vote_count,overview,release_date}=movie
+const MovieInfo = () => {
+
+    const {movieInfo}=useSelector(state=>state.movies)
+
+    const {id, title, overview, release_date, vote_count, vote_average, genre_ids}=movieInfo
+
+    console.log(movieInfo);
+
     return (
         <div>
             <h2>{title}</h2>

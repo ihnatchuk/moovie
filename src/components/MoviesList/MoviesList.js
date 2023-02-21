@@ -27,6 +27,8 @@ const MoviesList = () => {
 
         dispatch( setPage(query.get('page')||page) )
 
+        console.log('first useEffect');
+
     }, [dispatch])
 
     useEffect(() => {

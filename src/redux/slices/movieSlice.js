@@ -4,6 +4,7 @@ import {movieService} from "../../services";
 let initialState = {
     movies: [],
     genres: [],
+    movieInfo:null,
     filterByGenre:'',
     searchString:'',
     isSearching:false,
@@ -74,7 +75,11 @@ const movieSlice = createSlice({
 
         setFilterByGenre:(state,action)=>{
             state.filterByGenre=action.payload
-            }
+            },
+
+        setMovieInfo:(state, action)=>{
+            state.movieInfo=action.payload
+        }
 
     },
     extraReducers: builder =>
@@ -99,7 +104,8 @@ const movieSlice = createSlice({
 
 });
 
-const {reducer: movieReducer, actions:{setPage,setLangId,setSearchString,setFilterByGenre}} = movieSlice
+const {reducer: movieReducer,
+        actions:{setPage, setLangId, setSearchString, setFilterByGenre, setMovieInfo}} = movieSlice
 
 const movieAction = {
     discoverMovies,
@@ -113,5 +119,6 @@ export {
     setPage,
     setLangId,
     setSearchString,
-    setFilterByGenre
+    setFilterByGenre,
+    setMovieInfo
 }

@@ -3,6 +3,3 @@
     height: 450px;
     overflow:hidden
 }
-.Poster:hover{
-    transform: scale(110%);
-}

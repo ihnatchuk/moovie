@@ -1,6 +1,8 @@
 import React, {useRef} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {FormControl, MenuItem, Select} from "@mui/material";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 
 import css from './Header.module.css'
 import {setFilterByGenre, setLangId, setPage, setSearchString} from "../../redux";
@@ -36,7 +38,7 @@ const Header = () => {
                     </div>
 
                     <div className={css.userIconAndLang}>
-                        <FormControl sx={{m: 1, minWidth: 40}} size="small">
+                        <FormControl sx={{m: 1, minWidth: 40, backgroundColor:"yellow"}} size="small">
                             <Select
                                 value={langId}
                                 onChange={handleChange}
@@ -46,7 +48,8 @@ const Header = () => {
                             </Select>
                         </FormControl>
 
-                        <div>User</div>
+                        <div><AccountCircleIcon sx={{ fontSize: 50 }}/>
+                        </div>
                     </div>
                 </div>
             </div>

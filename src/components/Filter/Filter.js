@@ -12,8 +12,8 @@ const Filter = () => {
     const click=(genreId)=>{
         dispatch(setFilterByGenre(genreId))
         dispatch(setPage(1))
-        dispatch(setSearchString(''))
         document.getElementsByTagName('input')[0].value=''
+        dispatch(setSearchString(''))
     }
 
     useEffect(() => {

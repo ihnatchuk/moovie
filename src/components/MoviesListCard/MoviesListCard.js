@@ -1,21 +1,28 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 import {PosterPreview} from "../PosterPreview/PosterPreview";
 import {genreNameById} from "../../services";
 import css from './MovieCard.module.css'
-import {Link} from "react-router-dom";
+import { setMovieInfo } from "../../redux";
 
 const MoviesListCard = ({movie}) => {
-    const {poster_path, title, genre_ids, release_date} = movie
+
+    const {id, poster_path, title, genre_ids, release_date} = movie
+    const year = release_date?release_date.split('-')[0]:'no data'
 
     const {genres} = useSelector(state => state.movies)
 
-    const year = release_date?release_date.split('-')[0]:'no data'
+    const dispatch=useDispatch()
+    const click=(id)=>{
+        dispatch(setMovieInfo(movie))
+    }
+
 
     return (
-        <div className={css.MovieCard}>
-            <Link to={'/movie-details'}>
+        <div className={css.MovieCard} onClick={()=>click(id)}>
+            <Link to={'/movie-details'} >
                 <PosterPreview path={poster_path}/>
                 <div className={css.info}>{title}</div>
 

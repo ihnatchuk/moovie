@@ -3,10 +3,20 @@
     height: 515px;
     width: 300px;
     border: solid 5px #f8f855;
+    /*transition: transform 0.2s ease-in-out;*/
+    transition: border 0.4s ease-in-out;
 }
 .MovieCard:hover{
-    border: solid 5px blue;
+    border: solid 5px #1b35e1;
+    /*transform: scale(102%);*/
 }
+.MovieCard :hover .genre {
+    background-color: rgba(255, 255, 0);
+}
+.MovieCard :hover .year {
+    background-color: rgba(255, 255, 0);
+}
+
 .MovieCard a{
     text-decoration: none;
 }
@@ -33,7 +43,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: rgba(255, 255, 0, 0.9);
+    background-color: rgba(255, 255, 0, 0.8);
     color: darkblue;
     padding: 2px 10px;
     border-radius: 10px;
@@ -43,7 +53,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: rgba(255, 255, 0, 0.9);
+    background-color: rgba(255, 255, 0, 0.8);
     color: darkblue;
     padding: 2px 10px;
     border-radius: 10px;
