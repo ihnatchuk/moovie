@@ -13,8 +13,7 @@ const Filter = () => {
         dispatch(setFilterByGenre(genreId))
         dispatch(setPage(1))
         dispatch(setSearchString(''))
-
-
+        document.getElementsByTagName('input')[0].value=''
     }
 
     useEffect(() => {
@@ -26,7 +25,7 @@ const Filter = () => {
             <div className={css.Filter}>
             <ul className={css.genres}>
                 {
-                    genres.map(genre =><button onClick={()=>click(genre.id)}><li key={genre.id}>  {genre.name}</li></button> )
+                    genres.map(genre =><button key={genre.id} onClick={()=>click(genre.id)}><li>  {genre.name}</li></button> )
                 }
             </ul>
         </div>

@@ -10,32 +10,32 @@ const Header = () => {
     const {langId} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
-
     const handleChange = (event, value) => {
         dispatch(setLangId(value.props.value))
     };
     const click = () => {
+
         if (!!search.current.value) {
             dispatch(setSearchString(search.current.value))
-            dispatch(setPage(1))
-            dispatch(setFilterByGenre(''))
         } else {
             dispatch(setSearchString(''))
-            dispatch(setPage(1))
-            dispatch(setFilterByGenre(''))
         }
+
+        dispatch (setFilterByGenre(''))
+        dispatch(setPage(1))
     }
 
     return (
-        <>
             <div className={css.HeaderLayout}>
                 <div className={css.Header}>
-                    <div>M4U</div>
+                    <h1>M4U</h1>
+
                     <div className={css.searchForm}>
                         <input className={css.input} type="text" placeholder={'search'} ref={search}/>
                         <button type={'submit'} onClick={() => click()}>Search</button>
                     </div>
-                    <div>
+
+                    <div className={css.userIconAndLang}>
                         <FormControl sx={{m: 1, minWidth: 40}} size="small">
                             <Select
                                 value={langId}
@@ -45,12 +45,11 @@ const Header = () => {
                                 <MenuItem value={1}>Uk</MenuItem>
                             </Select>
                         </FormControl>
+
+                        <div>User</div>
                     </div>
-                    User
                 </div>
             </div>
-            <div className={css.fakeBox}></div>
-        </>
 
     );
 };

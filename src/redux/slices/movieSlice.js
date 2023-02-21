@@ -64,11 +64,11 @@ const movieSlice = createSlice({
 
         setSearchString:(state, action)=>{
             if (!!action.payload){
-                state.searchString=action.payload
                 state.isSearching=true
-            }else{
                 state.searchString=action.payload
+            }else{
                 state.isSearching=false
+                state.searchString=action.payload
             }
         },
 
