@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import {PosterPreview} from "../PosterPreview/PosterPreview";
 import {genreNameById} from "../../services";
@@ -15,10 +15,12 @@ const MoviesListCard = ({movie}) => {
 
     const {genres} = useSelector(state => state.movies)
 
+    const navigate=useNavigate()
+
     const dispatch=useDispatch()
     const click=(id)=>{
         dispatch(setMovieInfo(movie))
-        document.getElementsByClassName('css.Filter')[0].classList.add('none')
+        navigate(id.toString())
     }
 
 

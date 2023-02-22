@@ -5,6 +5,7 @@ import css from './MovieDetailsPage.module.css'
 
 const MovieDetailsPage = () => {
     return (
+
         <div className={css.MovieDetailsPage}>
             <MovieInfo/>
         </div>
