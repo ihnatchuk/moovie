@@ -10,6 +10,7 @@ import {setFilterByGenre, setLangId, setPage, setSearchString} from "../../redux
 const Header = () => {
     const search = useRef();
     const {langId} = useSelector(state => state.movies)
+
     const dispatch = useDispatch()
 
     const handleChange = (event, value) => {

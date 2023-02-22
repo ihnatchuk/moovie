@@ -27,24 +27,26 @@ const MoviesList = () => {
 
         dispatch( setPage(query.get('page')||page) )
 
-        console.log('first useEffect');
-
     }, [dispatch])
 
     useEffect(() => {
         if (isSearching) {
-            dispatch(movieAction.searchMovies({searchString, page, langId}))
+            dispatch(movieAction.searchMovies(
+                {searchString, page,langId}
+            ))
         }
-    }, [dispatch, page, langId, searchString])
+    }, [dispatch, searchString, page, langId])
 
 
     useEffect( () => {
-        if (!isSearching) {
+        if (!isSearching&&!searchString) {
             dispatch(movieAction.discoverMovies(
-                {page:query.get('page'), langId:query.get('lang'), filterByGenre:query.get('genres')}))
+                {page:query.get('page'), langId:query.get('lang'), filterByGenre:query.get('genres')}
+            ))
 
         }
     }, [dispatch, query])
+
 
 
     useEffect(() => {

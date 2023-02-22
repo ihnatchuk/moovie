@@ -6,6 +6,7 @@ import {PosterPreview} from "../PosterPreview/PosterPreview";
 import {genreNameById} from "../../services";
 import css from './MovieCard.module.css'
 import { setMovieInfo } from "../../redux";
+import {Badge} from "../Badge";
 
 const MoviesListCard = ({movie}) => {
 
@@ -17,6 +18,7 @@ const MoviesListCard = ({movie}) => {
     const dispatch=useDispatch()
     const click=(id)=>{
         dispatch(setMovieInfo(movie))
+        document.getElementsByClassName('css.Filter')[0].classList.add('none')
     }
 
 
@@ -28,11 +30,11 @@ const MoviesListCard = ({movie}) => {
 
                 {!!genre_ids.length &&
                     <div className={css.genre}>
-                        {genreNameById(genre_ids[0], genres)}
+                        <Badge text={genreNameById(genre_ids[0], genres)}/>
                     </div>
                 }
                 <div className={css.year}>
-                    {year}
+                    <Badge text={year}/>
                 </div>
             </Link>
 

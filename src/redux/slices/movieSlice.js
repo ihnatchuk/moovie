@@ -5,6 +5,7 @@ let initialState = {
     movies: [],
     genres: [],
     movieInfo:null,
+    movieDetails:null,
     filterByGenre:'',
     searchString:'',
     isSearching:false,
@@ -51,6 +52,18 @@ const getGenres = createAsyncThunk(
     }
 );
 
+const getMovieDetails = createAsyncThunk(
+    'movieSlice/getMovieDetails',
+    async ({id, langId}, thunkAPI) => {
+        try {
+            const {data} = await movieService.movieDetailsByID(id, langId)
+            return data
+        }catch (e) {
+            thunkAPI.rejectWithValue(e.response.data)
+        }
+    }
+);
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -64,13 +77,17 @@ const movieSlice = createSlice({
         },
 
         setSearchString:(state, action)=>{
-            if (!!action.payload){
+            console.log(action.payload, !!(action.payload) )
+            if (action.payload){
+                console.log('true');
                 state.isSearching=true
                 state.searchString=action.payload
             }else{
+                console.log('false');
                 state.isSearching=false
-                state.searchString=action.payload
+                state.searchString=''
             }
+            console.log('state',state.searchString);
         },
 
         setFilterByGenre:(state,action)=>{
@@ -100,6 +117,10 @@ const movieSlice = createSlice({
                 const { genres }=action.payload;
                 state.genres=genres;
             })
+            .addCase(getMovieDetails.fulfilled,(state, action) => {
+                state.movieDetails=action.payload;
+            })
+
 
 
 });
@@ -110,7 +131,8 @@ const {reducer: movieReducer,
 const movieAction = {
     discoverMovies,
     searchMovies,
-    getGenres
+    getGenres,
+    getMovieDetails
 }
 
 export {

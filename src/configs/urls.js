@@ -4,13 +4,12 @@ const baseImgURL='https://image.tmdb.org/t/p'
 
 const lang=['en','uk'];
 
-
-
 const urls={
     movie:{
         movies:'/discover/movie',
         search:'/search/movie',
         genres:'/genre/movie/list',
+        detailsById:(id)=>`/movie/${id}`
     },
     image:{
         poster:(size=300, path)=>`${baseImgURL}/w${size}/${path}`

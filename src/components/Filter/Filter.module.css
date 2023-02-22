@@ -9,6 +9,9 @@
     position: sticky;
     top:10px;
 }
+.none{
+    display: none;
+}
 
 .genres{
     text-decoration: none;
