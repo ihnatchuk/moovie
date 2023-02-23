@@ -6,7 +6,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import css from './Header.module.css'
 import {setFilterByGenre, setLangId, setPage, setSearchString} from "../../redux";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Header = () => {
     const search = useRef();
@@ -36,7 +36,7 @@ const Header = () => {
                 <div className={css.Header}>
 
                     <div className={css.logo}>
-                        <img src={require("../../img/m4u.png")} alt=""/>
+                        <Link to={'/'}><img src={require("../../img/m4u.png")} alt=""/></Link>
                     </div>
 
                     <div className={css.searchForm}>

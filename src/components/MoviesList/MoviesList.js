@@ -22,6 +22,8 @@ const MoviesList = () => {
         dispatch( setLangId(query.get('lang')||langId) )
         dispatch( setFilterByGenre(query.get('genres')||filterByGenre) )
 
+        console.log('init',query.get('search'));
+
         document.getElementsByTagName('input')[0].value=query.get('search')
         dispatch( setSearchString(query.get('search')||searchString) )
 

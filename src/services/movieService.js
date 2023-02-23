@@ -6,7 +6,14 @@ import {accessToken, lang, urls} from "../configs";
 const movieService={
     discoverMovie:(page,langId,filterByGenre )=>
         apiService.get(urls.movie.movies,
-            {params:{page:page,language:lang[langId],with_genres:filterByGenre}}),
+            {params:
+                      {
+                        page:page,
+                        language:lang[langId],
+                        with_genres:filterByGenre,
+                        sort_by:'popularity.desc'
+                      }
+                    }),
 
     searchMovie:(searchString, page,langId)=>
         apiService.get(urls.movie.search,{params:{query:searchString, page:page,language:lang[langId] }}),

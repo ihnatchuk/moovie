@@ -54,9 +54,9 @@ const getGenres = createAsyncThunk(
 
 const getMovieDetails = createAsyncThunk(
     'movieSlice/getMovieDetails',
-    async ({id, langId}, thunkAPI) => {
+    async ({movieId, langId}, thunkAPI) => {
         try {
-            const {data} = await movieService.movieDetailsByID(id, langId)
+            const {data} = await movieService.movieDetailsByID(movieId, langId)
             return data
         }catch (e) {
             thunkAPI.rejectWithValue(e.response.data)
