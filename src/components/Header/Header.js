@@ -7,10 +7,11 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import css from './Header.module.css'
 import {setFilterByGenre, setLangId, setPage, setSearchString} from "../../redux";
 import {Link, useNavigate} from "react-router-dom";
+import {LongMenu} from "../Menu/LongMenu";
 
 const Header = () => {
     const search = useRef();
-    const {langId} = useSelector(state => state.movies)
+    const {langId, genres, filterByGenre} = useSelector(state => state.movies)
 
     const dispatch = useDispatch()
     const navigate=useNavigate();
@@ -34,9 +35,12 @@ const Header = () => {
     return (
             <div className={css.HeaderLayout}>
                 <div className={css.Header}>
+                    <div className={css.leftHeader}>
+                        <div className={css.logo}>
+                            <Link to={'/'}><img src={require("../../img/m4u.png")} alt=""/></Link>
+                        </div>
 
-                    <div className={css.logo}>
-                        <Link to={'/'}><img src={require("../../img/m4u.png")} alt=""/></Link>
+                        <LongMenu genres={genres} genreId={filterByGenre}/>
                     </div>
 
                     <div className={css.searchForm}>

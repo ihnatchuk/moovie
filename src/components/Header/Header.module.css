@@ -26,6 +26,11 @@
     background-color: rgb(0, 13, 253);
     color: #f8f855;
 }
+.leftHeader{
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+}
 
 .searchForm {
     display: flex;
@@ -35,7 +40,7 @@
 }
 .input{
     width: 600px;
-    height: 30px;
+    height: 40px;
     border:none;
     font-size: 1.3em;
     border-radius: 5px 0 0 5px;
@@ -49,7 +54,7 @@
     color: #13133b;
 }
 button{
-    height: 30px;
+    height: 40px;
     background-color: #fcfc73;
     border-radius: 0 5px 5px 0;
     border: none;

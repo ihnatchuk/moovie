@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {movieAction, setFilterByGenre, setPage, setSearchString} from "../../redux";
 import css from './Filter.module.css'
+import {LongMenu} from '../Menu/LongMenu';
 
 
 const Filter = () => {
@@ -22,7 +23,9 @@ const Filter = () => {
 
     return (
         <>
-            <div className={css.Filter}>
+            <div className={css.none}>
+                <LongMenu genres={genres}/>
+
             <ul className={css.genres}>
                 {
                     genres.map(genre =><button key={genre.id} onClick={()=>click(genre.id)}><li>  {genre.name}</li></button> )
