@@ -2,11 +2,13 @@
     position: relative;
     height: 515px;
     width: 300px;
-    border: solid 5px #f8f855;
-    transition: border 0.4s ease-in-out;
+    border: solid 4px #f8f855;
+    transition: border,transform  0.2s ease-in-out;
+
 }
 .MovieCard:hover{
-    border: solid 5px #1b35e1;
+    border: solid 4px #1b35e1;
+    transform: scale(102%);
 }
 
 .MovieCard a{

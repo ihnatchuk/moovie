@@ -6,12 +6,14 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import css from './Header.module.css'
 import {setFilterByGenre, setLangId, setPage, setSearchString} from "../../redux";
+import {useNavigate} from "react-router-dom";
 
 const Header = () => {
     const search = useRef();
     const {langId} = useSelector(state => state.movies)
 
     const dispatch = useDispatch()
+    const navigate=useNavigate();
 
     const handleChange = (event, value) => {
         dispatch(setLangId(value.props.value))
@@ -26,12 +28,16 @@ const Header = () => {
 
         dispatch (setFilterByGenre(''))
         dispatch(setPage(1))
+        navigate('/movies')
     }
 
     return (
             <div className={css.HeaderLayout}>
                 <div className={css.Header}>
-                    <h1>M4U</h1>
+
+                    <div className={css.logo}>
+                        <img src={require("../../img/m4u.png")} alt=""/>
+                    </div>
 
                     <div className={css.searchForm}>
                         <input className={css.input} type="text" placeholder={'search'} ref={search}/>
@@ -53,6 +59,7 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+                <div className={css.yellowStrip} ></div>
             </div>
 
     );

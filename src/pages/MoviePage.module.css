@@ -1,9 +1,16 @@
+.moviePage{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .pagAlign{
     display: flex;
     justify-content: center;
     padding:10px;
     position: sticky;
-    top:90px;
+    top:80px;
     z-index:1;
+    width: 100%;
     background-color: white;
 }

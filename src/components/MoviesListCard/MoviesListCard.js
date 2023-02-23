@@ -15,18 +15,15 @@ const MoviesListCard = ({movie}) => {
 
     const {genres} = useSelector(state => state.movies)
 
-    const navigate=useNavigate()
-
     const dispatch=useDispatch()
     const click=(id)=>{
         dispatch(setMovieInfo(movie))
-        navigate(id.toString())
     }
 
 
     return (
         <div className={css.MovieCard} onClick={()=>click(id)}>
-            <Link to={'/movie-details'} >
+            <Link to={'/details'} >
                 <PosterPreview path={poster_path}/>
                 <div className={css.info}>{title}</div>
 
