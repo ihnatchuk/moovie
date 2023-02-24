@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useDispatch } from "react-redux";
-import {setFilterByGenre} from "../../redux";
+import {setFilterByGenre, setPage, setSearchString} from "../../redux";
 
 const ITEM_HEIGHT = 48;
 
@@ -18,10 +18,17 @@ export function LongMenu({genres, genreId}) {
 
     const dispatch=useDispatch()
 
+    const click=(id)=>{
+        dispatch(setFilterByGenre(id||genreId))
+        dispatch(setPage(1))
+        document.getElementsByTagName('input')[0].value = ''
+        dispatch(setSearchString(''))
 
-    const handleClose = (id) => {
         setAnchorEl(null);
-        dispatch(setFilterByGenre(id))
+    }
+
+    const handleClose = () => {
+        setAnchorEl(null);
     };
 
     return (
@@ -53,8 +60,9 @@ export function LongMenu({genres, genreId}) {
                     },
                 }}
             >
-                {genres.map((genre) => (
-                    <MenuItem key={genre.id} selected={genre.id === genreId} onClick={()=>handleClose(genre.id)}>
+                {
+                    genres.map((genre) => (
+                    <MenuItem key={genre.id} selected={genre.id === +genreId} onClick={()=>click(genre.id)}>
                         {genre.name}
                     </MenuItem>
                 ))}

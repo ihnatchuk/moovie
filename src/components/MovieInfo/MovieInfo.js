@@ -74,15 +74,14 @@ console.log('id', id, 'movieId', movieId)
                                     !!tagline && <div>tagline: {tagline}</div>
                                 }
 
-                                <div>id:{id}</div>
-
                                 <div>
                                     {release_date.split('-')[0]}, Imdb {vote_average}/{vote_count}, {runtime} minutes
                                 </div>
 
                                 <StarsRating rating={+vote_average / 2}/>
 
-                                <div>budget: ${+budget/1000000}M, revenue: ${+revenue/1000000}M </div>
+                                <div>budget: ${Math.floor(+budget/10000)/100}M, revenue: ${Math.floor(+revenue/10000)/100}M </div>
+
                                 <div>
                                     Production companies:
                                     <div className={css.Companies}>
@@ -91,7 +90,6 @@ console.log('id', id, 'movieId', movieId)
                                                 <div key={company.id}>{company.name}, {company.origin_country};</div>)
                                         }
                                     </div>
-
                                 </div>
 
                                 <div>Overview:

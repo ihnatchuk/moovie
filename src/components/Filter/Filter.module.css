@@ -1,45 +1,5 @@
 .Filter{
-    background-color: rgba(255, 255, 0);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 80px;
-    z-index: 1;
-    position: sticky;
-    top:0;
 }
 .none{
     display: none;
-}
-
-.genres{
-    text-decoration: none;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    width: 1280px;
-    height: 80px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
-    font-size: 1em;
-    justify-content: space-evenly;
-    column-gap: 15px;
-    row-gap: 5px;
-    background-color: rgb(255, 255, 0);
-}
-
-.genres li{
-    box-sizing: border-box;
-    align-items: center;
-    padding: 5px 5px;
-    color: darkblue;
-    font-weight: bold;
-    max-width: 120px;
-    min-width: 100px;
-    /*background-color: rgba(14, 82, 150, 0.58);*/
-    /*color: rgb(255, 255, 17);*/
-    /*border-radius: 15px;*/
 }
