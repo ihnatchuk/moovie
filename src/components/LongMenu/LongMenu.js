@@ -18,11 +18,11 @@ export function LongMenu({genres, genreId}) {
         setAnchorEl(event.currentTarget);
     };
 
-    const {darkTheme, langId}=useSelector(state => state.movies)
-    const dispatch=useDispatch()
+    const {darkTheme, langId} = useSelector(state => state.movies)
+    const dispatch = useDispatch()
 
-    const click=(id)=>{
-        dispatch(setFilterByGenre(id||genreId))
+    const click = (id) => {
+        dispatch(setFilterByGenre(id || genreId))
         dispatch(setPage(1))
         document.getElementsByTagName('input')[0].value = ''
         dispatch(setSearchString(''))
@@ -44,8 +44,8 @@ export function LongMenu({genres, genreId}) {
                 variant="contained"
                 disableElevation
                 onClick={handleClick}
-                endIcon={<KeyboardArrowDownIcon />}
-                color={darkTheme?'secondary':'primary'}
+                endIcon={<KeyboardArrowDownIcon/>}
+                color={darkTheme ? 'secondary' : 'primary'}
             >
                 {textLang.Genres[langId]}
             </Button>
@@ -61,15 +61,23 @@ export function LongMenu({genres, genreId}) {
                     style: {
                         maxHeight: ITEM_HEIGHT * 4.5,
                         width: '20ch',
+                        backgroundColor: darkTheme ? '#550000' : '#3f50b5'
                     },
                 }}
             >
                 {
-                    genres.map((genre) => (
-                    <MenuItem key={genre.id} selected={genre.id === +genreId} onClick={()=>click(genre.id)}>
-                        {genre.name}
-                    </MenuItem>
-                ))}
+                    genres.map((genre) =>
+                            <MenuItem key={genre.id}
+                                      selected={genre.id === +genreId}
+                                      onClick={() => click(genre.id)}
+                                      sx={{
+                                          color: '#fff',
+                                          backgroundColor: darkTheme ? '#880000' : 'blue'
+                                      }}>
+                                {genre.name}
+                            </MenuItem>
+                    )
+                }
             </Menu>
         </div>
     );

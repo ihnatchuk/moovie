@@ -10,4 +10,6 @@ export * from './Badge'
 export * from './StarsRating'
 export * from './CastList'
 export * from './Cast'
+export * from './LangSelect'
+
 

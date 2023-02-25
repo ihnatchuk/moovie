@@ -20,7 +20,7 @@ const CastList = ({cast}) => {
     return (
         <div className={CastListClass}>
             {
-                cast.map(actor=><Cast key={actor.cast_id} actor={actor}/>)
+                cast.map((actor,index)=>index<5?<Cast key={actor.cast_id} actor={actor}/>:false)
             }
         </div>
     );
