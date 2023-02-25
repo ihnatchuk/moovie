@@ -63,7 +63,7 @@ const MovieInfo = () => {
         })
 
     return (
-        <div className={css.MovieInfo}>
+        <div className={css.MovieInfo} id={'start'}>
 
             <div className={css.backdrop}>
                 {

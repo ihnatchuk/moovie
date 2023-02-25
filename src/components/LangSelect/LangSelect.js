@@ -3,6 +3,7 @@ import {MenuItem, Select} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 
 import {setLangId} from "../../redux";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const LangSelect = () => {
     const {langId, darkTheme}=useSelector(state => state.movies)

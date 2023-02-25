@@ -8,7 +8,7 @@ import {setFilterByGenre, setPage, setSearchString} from "../../redux";
 
 import {wordsLang as textLang} from "../../configs/textLang";
 
-const ITEM_HEIGHT = 48;
+const ITEM_HEIGHT = 40;
 
 export function LongMenu({genres, genreId}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -46,6 +46,8 @@ export function LongMenu({genres, genreId}) {
                 onClick={handleClick}
                 endIcon={<KeyboardArrowDownIcon/>}
                 color={darkTheme ? 'secondary' : 'primary'}
+                sx={{height:'30px'}}
+
             >
                 {textLang.Genres[langId]}
             </Button>
@@ -59,7 +61,7 @@ export function LongMenu({genres, genreId}) {
                 onClose={handleClose}
                 PaperProps={{
                     style: {
-                        maxHeight: ITEM_HEIGHT * 4.5,
+                        maxHeight: ITEM_HEIGHT * 5.5,
                         width: '20ch',
                         backgroundColor: darkTheme ? '#550000' : '#3f50b5'
                     },

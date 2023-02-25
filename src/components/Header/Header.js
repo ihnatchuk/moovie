@@ -77,12 +77,8 @@ const Header = () => {
 
                 <div className={css.userIconAndLang}>
                     <SwitchTheme/>
-
                     <LangSelect/>
-
-                    <div>
-                        <AccountCircleIcon sx={{fontSize: 50, color: 'white'}}/>
-                    </div>
+                    <AccountCircleIcon sx={{fontSize: 40, color: 'white'}}/>
                 </div>
 
             </div>

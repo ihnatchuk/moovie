@@ -5,6 +5,7 @@ import css from './MainLayout.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {movieAction} from "../redux";
 import {createTheme, ThemeProvider} from "@mui/material";
+import {Header} from "../components";
 
 const MainLayout = () => {
 
@@ -36,6 +37,7 @@ const MainLayout = () => {
     return (
         <ThemeProvider theme={theme}>
             <div className={css.Main}>
+                <Header/>
                 <Outlet/>
             </div>
         </ThemeProvider>
