@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
+import classNames from "classnames/bind";
 
 import {urls} from "../../configs";
 import css from './MovieInfo.module.css'
@@ -8,12 +9,13 @@ import {PosterPreview} from "../PosterPreview/PosterPreview";
 import {Badge} from "../Badge";
 import {movieAction} from "../../redux";
 import {StarsRating} from "../StarsRating";
+import {wordsLang} from '../../configs/textLang'
 
 const MovieInfo = () => {
 
     const {movieId} = useParams();
 
-    const {movieDetails, langId} = useSelector(state => state.movies)
+    const {movieDetails, langId, darkTheme} = useSelector(state => state.movies)
 
     // const {
     //     id, title, overview, release_date, vote_count,
@@ -43,7 +45,20 @@ const MovieInfo = () => {
         dispatch(movieAction.getMovieDetails({movieId, langId}))
     }, [dispatch, movieId, langId])
 
-console.log('id', id, 'movieId', movieId)
+    let cx = classNames.bind(css);
+    const TextInfoClass = cx(
+        {
+            'TextInfo': true,
+            'TextInfoLight': !darkTheme,
+            'TextInfoDark': darkTheme
+        })
+    const backGradientClass = cx(
+        {
+            'backGradient': true,
+            'backGradientLight': !darkTheme,
+            'backGradientDark': darkTheme
+        })
+
     return (
         <div className={css.MovieInfo}>
 
@@ -52,26 +67,26 @@ console.log('id', id, 'movieId', movieId)
                     +movieId===id && <img src={urls.image.poster(1280, backdrop_path)} alt=""/>
                 }
             </div>
-            <div className={css.backGradient}>
+            <div className={backGradientClass}>
                 { +movieId===id &&
                     <>
 
                         <div className={css.details}>
                             <div>
-                                <PosterPreview path={poster_path}/>
+                                <PosterPreview size={450} path={poster_path}/>
                             </div>
-                            <div className={css.TextInfo}>
+                            <div className={TextInfoClass}>
                                 <h2 className={css.movieTitle}>{title}</h2>
                                 <div className={css.originalTitle}>{original_title}</div>
 
                                 <div className={css.badges}>
                                     {!!genres &&
                                         genres.map(genre =>
-                                            <Badge key={genre.id} text={genre.name}/>)
+                                            <Badge key={genre.id} text={genre.name} darkTheme={darkTheme}/>)
                                     }
                                 </div>
                                 {
-                                    !!tagline && <div>tagline: {tagline}</div>
+                                    !!tagline && <div>{wordsLang.Tagline[langId]}: {tagline}</div>
                                 }
 
                                 <div>
@@ -80,10 +95,10 @@ console.log('id', id, 'movieId', movieId)
 
                                 <StarsRating rating={+vote_average / 2}/>
 
-                                <div>budget: ${Math.floor(+budget/10000)/100}M, revenue: ${Math.floor(+revenue/10000)/100}M </div>
+                                <div>{wordsLang.budget[langId]}: ${Math.floor(+budget/10000)/100}M, {wordsLang.revenue[langId]}: ${Math.floor(+revenue/10000)/100}M </div>
 
                                 <div>
-                                    Production companies:
+                                    {wordsLang.ProductionCompanies[langId]}:
                                     <div className={css.Companies}>
                                         {
                                             production_companies.map(company =>
@@ -92,7 +107,7 @@ console.log('id', id, 'movieId', movieId)
                                     </div>
                                 </div>
 
-                                <div>Overview:
+                                <div>{wordsLang.Overview[langId]}:
                                     <div className={css.Overview}>{overview}</div>
                                 </div>
 

@@ -12,6 +12,7 @@ let initialState = {
     langId:1,
     page:1,
     total_pages:null,
+    darkTheme:true,
     errors: null
 };
 
@@ -96,6 +97,9 @@ const movieSlice = createSlice({
 
         setMovieInfo:(state, action)=>{
             state.movieInfo=action.payload
+        },
+        changeTheme:(state)=>{
+            state.darkTheme=!state.darkTheme
         }
 
     },
@@ -126,7 +130,7 @@ const movieSlice = createSlice({
 });
 
 const {reducer: movieReducer,
-        actions:{setPage, setLangId, setSearchString, setFilterByGenre, setMovieInfo}} = movieSlice
+        actions:{setPage, setLangId, setSearchString, setFilterByGenre, setMovieInfo,changeTheme}} = movieSlice
 
 const movieAction = {
     discoverMovies,
@@ -142,5 +146,6 @@ export {
     setLangId,
     setSearchString,
     setFilterByGenre,
-    setMovieInfo
+    setMovieInfo,
+    changeTheme
 }

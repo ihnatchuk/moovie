@@ -1,13 +1,25 @@
 .MovieCard{
     position: relative;
-    height: 515px;
-    width: 300px;
-    border: solid 4px #f8f855;
-    transition: border,transform  0.2s ease-in-out;
+    height: 480px;
+    width: 280px;
+    box-sizing: border-box;
 
+    transition: border,transform  0.2s ease-in-out;
 }
-.MovieCard:hover{
-    border: solid 4px #1b35e1;
+.MovieCardLight{
+    border: solid 5px #f8f855;
+}
+
+.MovieCardDark{
+    border: solid 5px #880000;
+}
+
+.MovieCardLight:hover{
+    border: solid 5px #1b35e1;
+    transform: scale(102%);
+}
+.MovieCardDark:hover{
+    border: solid 5px #d50303;
     transform: scale(102%);
 }
 
@@ -18,10 +30,6 @@
 .info{
     font-size: 1.2em;
     font-weight: bold;
-    color:darkblue;
-
-    background: rgb(255, 255, 123);
-
     width: 100%;
     height: 65px;
     padding: 10px;
@@ -31,6 +39,16 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow: hidden;
+}
+
+.infoLight{
+    color:darkblue;
+    background: rgb(255, 255, 123);
+}
+.infoDark{
+    color: #ad0202;
+    background: rgb(19, 0, 0);
 }
 
 .genre {
@@ -45,6 +63,6 @@
 }
 .StarsRating{
     position: absolute;
-    top: 425px;
+    top: 380px;
     left: 10px;
 }

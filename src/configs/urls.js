@@ -12,7 +12,7 @@ const urls={
         detailsById:(id)=>`/movie/${id}`
     },
     image:{
-        poster:(size=300, path)=>`${baseImgURL}/w${size}/${path}`
+        poster:(size=300, path)=>`${baseImgURL}/w${size}${path}`
     }
 }
 

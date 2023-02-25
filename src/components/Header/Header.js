@@ -8,13 +8,16 @@ import css from './Header.module.css'
 import {setFilterByGenre, setLangId, setPage, setSearchString} from "../../redux";
 import {Link, useNavigate} from "react-router-dom";
 import {Filter} from "../Filter";
+import {SwitchTheme} from "../SwitchTheme/SwitchTheme";
+import classNames from "classnames/bind";
+import {wordsLang as textLang} from "../../configs/textLang";
 
 const Header = () => {
     const search = useRef();
-    const {langId} = useSelector(state => state.movies)
+    const {langId, darkTheme} = useSelector(state => state.movies)
 
     const dispatch = useDispatch()
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
     const handleChange = (event, value) => {
         dispatch(setLangId(value.props.value))
@@ -27,44 +30,70 @@ const Header = () => {
             dispatch(setSearchString(''))
         }
 
-        dispatch (setFilterByGenre(''))
+        dispatch(setFilterByGenre(''))
         dispatch(setPage(1))
         navigate('/movies')
     }
 
+    let cx = classNames.bind(css);
+    const HeaderLayoutClass = cx(
+        {
+            'HeaderLayout': true,
+            'HeaderLayoutLight': !darkTheme,
+            'HeaderLayoutDark': darkTheme
+        })
+
+    const searchButtonClass = cx(
+        {
+            'searchButton': true,
+            'searchButtonLight': !darkTheme,
+            'searchButtonDark': darkTheme
+        })
+
     return (
-            <div className={css.HeaderLayout}>
-                <div className={css.Header}>
-                    <div className={css.leftHeader}>
-                        <div className={css.logo}>
-                            <Link to={'/'}><img src={require("../../img/m4u.png")} alt=""/></Link>
-                        </div>
+        <div className={HeaderLayoutClass}>
+            <div className={css.Header}>
 
-                        <Filter/>
+                <div className={css.leftHeader}>
+                    <div className={css.logo}>
+                        <Link to={'/'}><img src={require("../../img/m4u.png")} alt=""/></Link>
                     </div>
 
-                    <div className={css.searchForm}>
-                        <input className={css.input} type="text" placeholder={'search'} ref={search}/>
-                        <button type={'submit'} onClick={() => click()}>Search</button>
-                    </div>
+                    <Filter/>
+                </div>
 
-                    <div className={css.userIconAndLang}>
-                        <FormControl sx={{m: 1, minWidth: 40, backgroundColor:"yellow"}} size="small">
-                            <Select
-                                value={langId}
-                                onChange={handleChange}
-                            >
-                                <MenuItem value={0}>En</MenuItem>
-                                <MenuItem value={1}>Uk</MenuItem>
-                            </Select>
-                        </FormControl>
+                <div className={css.searchForm}>
+                    <input className={css.input} type="text" placeholder={textLang.Search[langId]} ref={search}/>
+                    <button
+                        className={searchButtonClass}
+                        type={'submit'}
+                        onClick={() => click()}>
+                        {textLang.Search[langId]}
+                    </button>
+                </div>
 
-                        <div><AccountCircleIcon sx={{ fontSize: 50 }}/>
-                        </div>
+
+                <div className={css.userIconAndLang}>
+
+                    <SwitchTheme/>
+
+                    <FormControl sx={{m: 1, minWidth: 40, backgroundColor: 'white'}} size="small">
+                        <Select
+                            value={langId}
+                            onChange={handleChange}
+                        >
+                            <MenuItem value={0}>En</MenuItem>
+                            <MenuItem value={1}>Uk</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    <div>
+                        <AccountCircleIcon sx={{fontSize: 50, color: 'white'}}/>
                     </div>
                 </div>
-                <div className={css.yellowStrip} ></div>
+
             </div>
+        </div>
 
     );
 };

@@ -3,8 +3,10 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setFilterByGenre, setPage, setSearchString} from "../../redux";
+
+import {wordsLang as textLang} from "../../configs/textLang";
 
 const ITEM_HEIGHT = 48;
 
@@ -16,6 +18,7 @@ export function LongMenu({genres, genreId}) {
         setAnchorEl(event.currentTarget);
     };
 
+    const {darkTheme, langId}=useSelector(state => state.movies)
     const dispatch=useDispatch()
 
     const click=(id)=>{
@@ -42,8 +45,9 @@ export function LongMenu({genres, genreId}) {
                 disableElevation
                 onClick={handleClick}
                 endIcon={<KeyboardArrowDownIcon />}
+                color={darkTheme?'secondary':'primary'}
             >
-                Genres
+                {textLang.Genres[langId]}
             </Button>
             <Menu
                 id="long-menu"
