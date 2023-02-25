@@ -16,7 +16,7 @@
 }
 .HeaderLayoutDark{
     background-color: rgb(0, 0, 0);
-    border-bottom: 10px solid #880000;
+    border-bottom: 10px solid #EE0000;
 }
 
 .Header{
@@ -50,10 +50,23 @@
     padding: 0 15px;
     box-sizing: border-box;
 }
-.input:focus{
-    outline: none;;
-    color: #13133b;
+.inputLight{
+    background-color: #fff;
+    color: blue;
 }
+.inputDark{
+    background-color: #2d2d2d;
+    color: white;
+}
+.inputDark:focus{
+    outline: none;;
+    color: #fff;
+}
+.inputLight:focus{
+    outline: none;;
+    color: blue;
+}
+
 .searchButton{
     height: 40px;
     padding: 0 10px;

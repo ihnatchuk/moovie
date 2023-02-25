@@ -2,13 +2,13 @@ import React, {useRef} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {FormControl, MenuItem, Select} from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import {Link, useNavigate} from "react-router-dom";
 
 
 import css from './Header.module.css'
 import {setFilterByGenre, setLangId, setPage, setSearchString} from "../../redux";
-import {Link, useNavigate} from "react-router-dom";
 import {Filter} from "../Filter";
-import {SwitchTheme} from "../SwitchTheme/SwitchTheme";
+import {SwitchTheme} from "../SwitchTheme";
 import classNames from "classnames/bind";
 import {wordsLang as textLang} from "../../configs/textLang";
 
@@ -49,6 +49,12 @@ const Header = () => {
             'searchButtonLight': !darkTheme,
             'searchButtonDark': darkTheme
         })
+    const inputClass = cx(
+        {
+            'input': true,
+            'inputLight': !darkTheme,
+            'inputDark': darkTheme
+        })
 
     return (
         <div className={HeaderLayoutClass}>
@@ -63,7 +69,7 @@ const Header = () => {
                 </div>
 
                 <div className={css.searchForm}>
-                    <input className={css.input} type="text" placeholder={textLang.Search[langId]} ref={search}/>
+                    <input className={inputClass} type="text" placeholder={textLang.Search[langId]} ref={search}/>
                     <button
                         className={searchButtonClass}
                         type={'submit'}

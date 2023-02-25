@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {styled} from '@mui/material/styles';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import {useDispatch, useSelector} from "react-redux";
+
 import {changeTheme} from "../../redux";
 
 
@@ -55,23 +55,12 @@ const MaterialUISwitch = styled(Switch)(() => ({
 
 export function SwitchTheme() {
 
-    const {darkTheme} = useSelector(state => state.movies)
+    const {darkTheme}=useSelector(state => state.movies)
     const dispatch = useDispatch()
-    const ChangedTheme = () => {
-        dispatch(changeTheme())
-    }
-    if (darkTheme) {
+    const ChangedTheme = () => dispatch(changeTheme())
+
         return (
-            <FormControlLabel
-                control={<MaterialUISwitch sx={{m: 1}} defaultChecked onChange={() => ChangedTheme()}/>}
-            />
+            <MaterialUISwitch sx={{m: 1}} checked={darkTheme} onChange={() => ChangedTheme()}/>
         );
-    }else{
-        return (
-            <FormControlLabel
-                control={<MaterialUISwitch sx={{m: 1}} onChange={() => ChangedTheme()}/>}
-            />
-        );
-    }
 
 }

@@ -4,6 +4,8 @@ import {movieService} from "../../services";
 let initialState = {
     movies: [],
     genres: [],
+    videos:[],
+    cast:[],
     movieInfo:null,
     movieDetails:null,
     filterByGenre:'',
@@ -65,6 +67,30 @@ const getMovieDetails = createAsyncThunk(
     }
 );
 
+const getVideos = createAsyncThunk(
+    'movieSlice/getVideos',
+    async ({movieId, langId}, thunkAPI) => {
+        try {
+            const {data} = await movieService.videosById(movieId, langId)
+            return data
+        }catch (e) {
+            thunkAPI.rejectWithValue(e.response.data)
+        }
+    }
+);
+
+const getCast = createAsyncThunk(
+    'movieSlice/getCast',
+    async ({movieId, langId}, thunkAPI) => {
+        try {
+            const {data} = await movieService.cast(movieId, langId)
+            return data
+        }catch (e) {
+            thunkAPI.rejectWithValue(e.response.data)
+        }
+    }
+);
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -78,17 +104,13 @@ const movieSlice = createSlice({
         },
 
         setSearchString:(state, action)=>{
-            console.log(action.payload, !!(action.payload) )
             if (action.payload){
-                console.log('true');
                 state.isSearching=true
                 state.searchString=action.payload
             }else{
-                console.log('false');
                 state.isSearching=false
                 state.searchString=''
             }
-            console.log('state',state.searchString);
         },
 
         setFilterByGenre:(state,action)=>{
@@ -124,19 +146,29 @@ const movieSlice = createSlice({
             .addCase(getMovieDetails.fulfilled,(state, action) => {
                 state.movieDetails=action.payload;
             })
-
+            .addCase(getVideos.fulfilled,(state, action) => {
+                const { results }=action.payload;
+                state.videos=results;
+            })
+            .addCase(getCast.fulfilled,(state, action) => {
+                const { cast }=action.payload;
+                state.cast=cast;
+            })
 
 
 });
 
 const {reducer: movieReducer,
-        actions:{setPage, setLangId, setSearchString, setFilterByGenre, setMovieInfo,changeTheme}} = movieSlice
+        actions:
+            {setPage, setLangId, setSearchString, setFilterByGenre, setMovieInfo,changeTheme}} = movieSlice
 
 const movieAction = {
     discoverMovies,
     searchMovies,
     getGenres,
-    getMovieDetails
+    getMovieDetails,
+    getVideos,
+    getCast
 }
 
 export {

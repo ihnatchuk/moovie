@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {MovieInfo} from "../components/MovieInfo/MovieInfo";
+import {MovieInfo} from "../components";
 import css from './MovieDetailsPage.module.css'
-import {Header} from "../components/Header/Header";
+import {Header} from "../components";
 import classNames from "classnames/bind";
 import {useSelector} from "react-redux";
 
@@ -23,11 +23,6 @@ const MovieDetailsPage = () => {
             <Header/>
             <div className={MovieDetailsPageClass}>
                 <MovieInfo/>
-                <div>
-                    <iframe title='Trailer' id="ytplayer" width="1280" height="720"
-                            src="http://www.youtube.com/embed/6JnN1DmbqoU?autoplay=1" frameborder="0"
-                    />
-                </div>
             </div>
 
         </>

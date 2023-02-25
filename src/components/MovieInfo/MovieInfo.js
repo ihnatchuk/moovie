@@ -5,17 +5,18 @@ import classNames from "classnames/bind";
 
 import {urls} from "../../configs";
 import css from './MovieInfo.module.css'
-import {PosterPreview} from "../PosterPreview/PosterPreview";
+import {PosterPreview} from "../PosterPreview";
 import {Badge} from "../Badge";
 import {movieAction} from "../../redux";
 import {StarsRating} from "../StarsRating";
 import {wordsLang} from '../../configs/textLang'
+import {CastList} from "../CastList";
 
 const MovieInfo = () => {
 
     const {movieId} = useParams();
 
-    const {movieDetails, langId, darkTheme} = useSelector(state => state.movies)
+    const {movieDetails, videos, cast, langId, darkTheme} = useSelector(state => state.movies)
 
     // const {
     //     id, title, overview, release_date, vote_count,
@@ -43,6 +44,8 @@ const MovieInfo = () => {
 
     useEffect(() => {
         dispatch(movieAction.getMovieDetails({movieId, langId}))
+        dispatch(movieAction.getVideos({movieId, langId}))
+        dispatch(movieAction.getCast({movieId, langId}))
     }, [dispatch, movieId, langId])
 
     let cx = classNames.bind(css);
@@ -64,17 +67,21 @@ const MovieInfo = () => {
 
             <div className={css.backdrop}>
                 {
-                    +movieId===id && <img src={urls.image.poster(1280, backdrop_path)} alt=""/>
+                    +movieId === id && <img src={urls.image.poster(1280, backdrop_path)} alt=""/>
                 }
             </div>
             <div className={backGradientClass}>
-                { +movieId===id &&
-                    <>
 
-                        <div className={css.details}>
-                            <div>
-                                <PosterPreview size={450} path={poster_path}/>
-                            </div>
+                {+movieId === id &&
+
+                    <div className={css.details}>
+
+                        <div>
+                            <PosterPreview size={480} path={poster_path}/>
+                        </div>
+
+                        <div className={css.detailsRight}>
+
                             <div className={TextInfoClass}>
                                 <h2 className={css.movieTitle}>{title}</h2>
                                 <div className={css.originalTitle}>{original_title}</div>
@@ -85,6 +92,7 @@ const MovieInfo = () => {
                                             <Badge key={genre.id} text={genre.name} darkTheme={darkTheme}/>)
                                     }
                                 </div>
+
                                 {
                                     !!tagline && <div>{wordsLang.Tagline[langId]}: {tagline}</div>
                                 }
@@ -95,7 +103,10 @@ const MovieInfo = () => {
 
                                 <StarsRating rating={+vote_average / 2}/>
 
-                                <div>{wordsLang.budget[langId]}: ${Math.floor(+budget/10000)/100}M, {wordsLang.revenue[langId]}: ${Math.floor(+revenue/10000)/100}M </div>
+                                <div>{wordsLang.budget[langId]}:
+                                    ${Math.floor(+budget / 10000) / 100}M, {wordsLang.revenue[langId]}:
+                                    ${Math.floor(+revenue / 10000) / 100}M
+                                </div>
 
                                 <div>
                                     {wordsLang.ProductionCompanies[langId]}:
@@ -112,10 +123,22 @@ const MovieInfo = () => {
                                 </div>
 
                             </div>
+                            <div>
+                                {wordsLang.acting[langId]}:
+                                <CastList cast={cast}/>
+                            </div>
                         </div>
-                    </>
+                    </div>
                 }
             </div>
+
+            { +movieId === id && !!videos.length &&
+                <div>
+                    <iframe title='Trailer' id="ytplayer" width="1280" height="720" style={{border: 0}}
+                            src={`http://www.youtube.com/embed/${videos[0].key}?autoplay=1`}
+                    />
+                </div>
+            }
 
 
         </div>

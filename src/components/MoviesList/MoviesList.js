@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
-import {MoviesListCard} from "../MoviesListCard/MoviesListCard";
+import {MoviesListCard} from "../MoviesListCard";
 import {movieAction, setFilterByGenre, setLangId, setPage, setSearchString} from "../../redux";
 import css from './MoviesList.module.css'
 import {useSearchParams} from "react-router-dom";
@@ -21,8 +21,6 @@ const MoviesList = () => {
     useEffect(() => {
         dispatch( setLangId(query.get('lang')||langId) )
         dispatch( setFilterByGenre(query.get('genres')||filterByGenre) )
-
-        console.log('init',query.get('search'));
 
         document.getElementsByTagName('input')[0].value=query.get('search')
         dispatch( setSearchString(query.get('search')||searchString) )

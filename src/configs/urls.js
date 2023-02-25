@@ -9,7 +9,9 @@ const urls={
         movies:'/discover/movie',
         search:'/search/movie',
         genres:'/genre/movie/list',
-        detailsById:(id)=>`/movie/${id}`
+        detailsById:(id)=>`/movie/${id}`,
+        cast:(id)=>`/movie/${id}/credits`,
+        videosById:(id)=>`/movie/${id}/videos`
     },
     image:{
         poster:(size=300, path)=>`${baseImgURL}/w${size}${path}`

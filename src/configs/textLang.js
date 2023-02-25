@@ -7,7 +7,8 @@ const wordsLang={
     minutes:['minutes','хв.'],
     ProductionCompanies:['Production companies','Кінокомпанії'],
     Overview:['Overview','Огляд'],
-    runtime:['runtime','тривалість']
+    runtime:['runtime','тривалість'],
+    acting:['Acting', 'В ролях']
 }
 
 export {

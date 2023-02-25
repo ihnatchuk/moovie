@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from "react-redux";
 
 import css from './Filter.module.css'
-import {LongMenu} from '../Menu/LongMenu';
+import {LongMenu} from '../LongMenu';
 
 
 const Filter = () => {
