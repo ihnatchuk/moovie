@@ -34,8 +34,9 @@
     column-gap: 30px;
     align-items: start;
     padding-top: 15px;
+    width: 300px;
 }
-.FilterSize{
+.GenreMenuSize{
     width: 100px;
 }
 
@@ -69,6 +70,10 @@
 .inputLight:focus{
     outline: none;;
     color: blue;
+}
+.inputs{
+    display: flex;
+    align-items: center;
 }
 
 .searchButton{

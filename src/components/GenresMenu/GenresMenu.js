@@ -10,7 +10,7 @@ import {wordsLang as textLang} from "../../configs/textLang";
 
 const ITEM_HEIGHT = 40;
 
-export function LongMenu({genres, genreId}) {
+export function GenresMenu({ query, setQuery }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -18,11 +18,18 @@ export function LongMenu({genres, genreId}) {
         setAnchorEl(event.currentTarget);
     };
 
-    const {darkTheme, langId} = useSelector(state => state.movies)
+    const { genres, searchString, darkTheme, langId} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
     const click = (id) => {
-        dispatch(setFilterByGenre(id || genreId))
+        setQuery((query)=>(
+            {
+                lang:query.get('lang')||langId,
+                genres:id,
+                search:'',
+                page:1}))
+
+        dispatch(setFilterByGenre( id ))
         dispatch(setPage(1))
         document.getElementsByTagName('input')[0].value = ''
         dispatch(setSearchString(''))
@@ -43,6 +50,7 @@ export function LongMenu({genres, genreId}) {
                 aria-expanded={open ? 'true' : undefined}
                 variant="contained"
                 disableElevation
+                disabled={!!searchString}
                 onClick={handleClick}
                 endIcon={<KeyboardArrowDownIcon/>}
                 color={darkTheme ? 'secondary' : 'primary'}
@@ -70,7 +78,7 @@ export function LongMenu({genres, genreId}) {
                 {
                     genres.map((genre) =>
                             <MenuItem key={genre.id}
-                                      selected={genre.id === +genreId}
+                                      selected={genre.id === +query.get('genres')}
                                       onClick={() => click(genre.id)}
                                       sx={{
                                           color: '#fff',

@@ -2,7 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import {PosterPreview} from "../PosterPreview/PosterPreview";
+import {PosterPreview} from "../PosterPreview";
 import {genreNameById} from "../../services";
 import {setMovieInfo} from "../../redux";
 import {Badge} from "../Badge";

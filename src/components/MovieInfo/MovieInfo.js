@@ -1,52 +1,34 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
 import classNames from "classnames/bind";
 
 import {urls} from "../../configs";
 import css from './MovieInfo.module.css'
 import {PosterPreview} from "../PosterPreview";
 import {Badge} from "../Badge";
-import {movieAction} from "../../redux";
 import {StarsRating} from "../StarsRating";
 import {wordsLang} from '../../configs/textLang'
 import {CastList} from "../CastList";
 
-const MovieInfo = () => {
+const MovieInfo = ({movieId,details}) => {
+    const {
+        id,
+        title,
+        original_title,
+        tagline,
+        genres,
+        release_date,
+        runtime,
+        vote_count,
+        vote_average,
+        backdrop_path,
+        poster_path,
+        budget,
+        revenue,
+        production_companies,
+        overview,
+    }=details
 
-    const {movieId} = useParams();
-
-    const {movieDetails, videos, cast, langId, darkTheme} = useSelector(state => state.movies)
-
-    // const {
-    //     id, title, overview, release_date, vote_count,
-    //     vote_average, genre_ids, backdrop_path, poster_path
-    // } = movieInfo
-
-    const id = movieDetails?.id || null
-    const title = movieDetails?.title || ''
-    const overview = movieDetails?.overview || ''
-    const release_date = movieDetails?.release_date || ''
-    const runtime = movieDetails?.runtime || ''
-    const vote_count = movieDetails?.vote_count || null
-    const vote_average = movieDetails?.vote_average || null
-    const backdrop_path = movieDetails?.backdrop_path || ''
-    const poster_path = movieDetails?.poster_path || ''
-    const budget = movieDetails?.budget || null
-    const revenue = movieDetails?.revenue || null
-    const tagline = movieDetails?.tagline || ''
-    const original_title = movieDetails?.original_title || ''
-    const genres = movieDetails?.genres || []
-    const production_companies = movieDetails?.production_companies || []
-
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(movieAction.getMovieDetails({movieId, langId}))
-        dispatch(movieAction.getVideos({movieId, langId}))
-        dispatch(movieAction.getCast({movieId, langId}))
-    }, [dispatch, movieId, langId])
+    const {videos, cast, langId, darkTheme} = useSelector(state => state.movies)
 
     let cx = classNames.bind(css);
     const TextInfoClass = cx(
@@ -63,7 +45,7 @@ const MovieInfo = () => {
         })
 
     return (
-        <div className={css.MovieInfo} id={'start'}>
+        <div className={css.MovieInfo}>
 
             <div className={css.backdrop}>
                 {
@@ -139,8 +121,6 @@ const MovieInfo = () => {
                     />
                 </div>
             }
-
-
         </div>
     );
 };

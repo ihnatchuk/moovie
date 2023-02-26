@@ -3,14 +3,22 @@ import {MenuItem, Select} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 
 import {setLangId} from "../../redux";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-const LangSelect = () => {
+const LangSelect = ({setQuery}) => {
     const {langId, darkTheme}=useSelector(state => state.movies)
     const dispatch = useDispatch();
 
     const handleChange = (event, value) => {
         dispatch(setLangId(value.props.value))
+
+        setQuery(query=> (
+            {
+                lang:value.props.value,
+                genres:query.get('genres')||'',
+                search:query.get('search')||'',
+                page:query.get('page')||'1',
+            })
+        )
     };
 
     return (
@@ -22,7 +30,6 @@ const LangSelect = () => {
                 sx={{
                     color:darkTheme?'#000':'blue',
                     height:'30px',
-                    // backgroundColor:darkTheme?'#880000':'blue',
                     backgroundColor:'#fff',
                     paddingLeft:'5px'
                 }}

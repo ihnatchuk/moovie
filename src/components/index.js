@@ -1,6 +1,5 @@
 export * from './Header'
-export * from './Filter'
-export * from './LongMenu'
+export * from './GenresMenu'
 export * from './SwitchTheme'
 export * from './MoviesList'
 export * from './MoviesListCard'
